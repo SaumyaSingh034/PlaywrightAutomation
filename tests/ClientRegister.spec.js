@@ -21,22 +21,26 @@ test.only('User Register and Login', async ({browser}) => {
 
 
     await page.goto("https://rahulshettyacademy.com/client/");
-    await register.click()
-    await firstName.fill("automation");
-    await lastName.fill("learning");
-    await email.fill("automationPlaywright0001@gmail.com");
-    await mobile.fill("8737801000");
-    await password.fill("Automation@001");
-    await confirmPwd.fill("Automation@001");
-    await checkbox.click();
-    await login.click();
-    const actualText = await accountText.textContent();
-    await expect(actualText).toContain("Account Created Successfully");
-    await loginBtn.click();
+    // await register.click()
+    // await firstName.fill("automation");
+    // await lastName.fill("learning");
+    // await email.fill("automationPlaywright0001@gmail.com");
+    // await mobile.fill("8737801000");
+    // await password.fill("Automation@001");
+    // await confirmPwd.fill("Automation@001");
+    // await checkbox.click();
+    // await login.click();
+    // const actualText = await accountText.textContent();
+    // await expect(actualText).toContain("Account Created Successfully");
+    // await loginBtn.click();
     await loginEmail.fill("automationPlaywright0001@gmail.com");
     await loginpassword.fill("Automation@001");
-    await loginBtn.click();
-    const text = await page.locator(".card-body b").first().textContent();
-    console.log(text);
+    await login.click();
+    
+    //const text = await page.locator(".card-body b").first().textContent();
+    //await page.waitForLoadState("networkidle");
+    await page.locator(".card-body b").first().waitFor();
+    const titles = await page.locator(".card-body b").allTextContents();
+    console.log(titles);
 
 });
