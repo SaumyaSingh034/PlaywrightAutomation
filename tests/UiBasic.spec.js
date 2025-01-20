@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const { error } = require('console');
+const { symlinkSync } = require('fs');
 
 test('First Plyawright Test Case', async ({browser})=>
     {
@@ -26,6 +27,10 @@ test('First Plyawright Test Case', async ({browser})=>
         await userName.fill("rahulshettyacademy");
         await signInBtn.click();
         console.log(await page.title());
+        console.log(await page.locator(".card-title a").first().textContent());
+        console.log(await page.locator(".card-title a").nth(1).textContent());
+        const titles = await page.locator(".card-title a").allTextContents();
+        console.log(titles);
 
 
 
