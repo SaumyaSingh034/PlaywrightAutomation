@@ -37,6 +37,29 @@ test('First Plyawright Test Case', async ({browser})=>
 
 });
 
+test.only('UI Selectors', async ({page}) => {
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const userName = page.locator("#username");
+    const password = page.locator("[type='password']");
+    const dropDown = page.locator("select.form-control");
+    const signInBtn = page.locator("#signInBtn");
+    await userName.fill("rahulshettyacademy");
+    await password.fill("learning");
+    // await dropDown.selectOption("stud");
+    // await dropDown.selectOption("teach");
+    await dropDown.selectOption("consult");
+   
+    await page.locator("span.radiotextsty").last().click();
+    await expect(page.locator("span.radiotextsty").last()).toBeChecked();
+    await page.locator("#okayBtn").click()
+
+    await page.pause();
+
+   // await signInBtn.click();
+
+
+})
+
 test('Page Playwright Test', async ({page})=> {
 
     await page.goto("https://google.com");
