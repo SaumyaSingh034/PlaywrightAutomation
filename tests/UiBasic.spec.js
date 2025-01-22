@@ -43,6 +43,7 @@ test.only('UI Selectors', async ({page}) => {
     const password = page.locator("[type='password']");
     const dropDown = page.locator("select.form-control");
     const signInBtn = page.locator("#signInBtn");
+    const binkingText = page.locator("[href*='documents-request']");
     await userName.fill("rahulshettyacademy");
     await password.fill("learning");
     // await dropDown.selectOption("stud");
@@ -51,14 +52,38 @@ test.only('UI Selectors', async ({page}) => {
    
     await page.locator("span.radiotextsty").last().click();
     await expect(page.locator("span.radiotextsty").last()).toBeChecked();
-    await page.locator("#okayBtn").click()
+    await page.locator("#okayBtn").click();
+    console.log(page.locator("span.radiotextsty").last().isChecked());
+    await page.locator("#terms").click();
+    await expect(page.locator("#terms")).toBeChecked();
+    await page.locator("#terms").uncheck();
+    expect(await page.locator("#terms").isChecked()).toBeFalsy();
+    await expect(binkingText).toHaveAttribute("class","blinkingText");
 
-    await page.pause();
+
+
+    //await page.pause();
 
    // await signInBtn.click();
 
 
-})
+});
+
+test.only('Child Window Handle', async ({browser})=> {
+    const context = browser.newContext();
+    const page = (await context).newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const documentLink = page.locator("[href*='documents-request']");
+    const [newPage] = Promise.all([
+        (await context).waitForEvent('page'),
+        documentLink.click(),
+
+    ]);
+    //newPage
+
+    
+
+});
 
 test('Page Playwright Test', async ({page})=> {
 
