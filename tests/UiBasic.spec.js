@@ -37,7 +37,7 @@ test('First Plyawright Test Case', async ({browser})=>
 
 });
 
-test.only('UI Selectors', async ({page}) => {
+test('UI Selectors', async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator("#username");
     const password = page.locator("[type='password']");
@@ -70,16 +70,24 @@ test.only('UI Selectors', async ({page}) => {
 });
 
 test.only('Child Window Handle', async ({browser})=> {
-    const context = browser.newContext();
-    const page = (await context).newPage();
+    const context = await browser.newContext();
+    const page = await context.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const documentLink = page.locator("[href*='documents-request']");
-    const [newPage] = Promise.all([
+    const [newPage] = await Promise.all([
         (await context).waitForEvent('page'),
         documentLink.click(),
 
     ]);
-    //newPage
+    
+    const text = await newPage.locator("p.red").textContent();
+    const arrayText = text.split("@");
+    const userDomain = arrayText[1].split(" ")[0];
+    console.log(userDomain);
+    const userName = page.locator("#username");
+    await userName.fill(userDomain);
+    await page.pause();
+
 
     
 
