@@ -69,7 +69,7 @@ test('UI Selectors', async ({page}) => {
 
 });
 
-test.only('Child Window Handle', async ({browser})=> {
+test('Child Window Handle', async ({browser})=> {
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
@@ -86,7 +86,7 @@ test.only('Child Window Handle', async ({browser})=> {
     console.log(userDomain);
     const userName = page.locator("#username");
     await userName.fill(userDomain);
-    await page.pause();
+    //await page.pause();
 
 
     
@@ -97,6 +97,6 @@ test('Page Playwright Test', async ({page})=> {
 
     await page.goto("https://google.com");
     console.log(await page.title());
-    await expect(page).toHaveTitle("Google");
+    await expect(page).toHaveTitle("Googlesss");
 
 });
