@@ -20,5 +20,17 @@ test('Client App Login', async ({page}) =>
                 }
 
         }
+        //go to cart
+        await page.locator("[routerlink*='cart']").click();
+
+        //Wait for items to load in the cart
+        await page.locator("div li").first().waitFor();
+
+        //validate the item is added
+        const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+        expect(bool).toBeTruthy();
+
+        //Click On Checkout
+        await page.locator("text=Checkout").click();
         await page.pause();
 });
