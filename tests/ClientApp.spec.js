@@ -32,6 +32,20 @@ test('Client App Login', async ({page}) =>
 
         //Click On Checkout
         await page.locator("text=Checkout").click();
+        await page.locator("[class='input txt']").first().fill("8962");
+        //CSS---> [attribute='value']
+        await page.locator("[class='input txt']").last().fill("Saumya Singh");
+
+        //apply coupon
+        await page.locator("[name ='coupon']").fill("rahulshettyacademy");
+        await page.locator("[class ='btn btn-primary mt-1']").click();
+
+        //validate email id
+         const email = await page.locator("[class*='text-validated ng-untouched']").inputValue();
+         const email1 = await page.locator("[class*='text-validated ng-untouched']").innerText();
+         console.log(email);
+         console.log(email1);
+
         
         await page.pause();
 });
