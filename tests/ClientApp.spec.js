@@ -32,5 +32,6 @@ test('Client App Login', async ({page}) =>
 
         //Click On Checkout
         await page.locator("text=Checkout").click();
+        
         await page.pause();
 });
