@@ -47,12 +47,13 @@ test('Client App Login', async ({page}) =>
          console.log(email1);
 
          //Select Country
-         await page.locator("[placeholder*='Country']").pressSequentially("ind");
+         await page.locator("[placeholder*='Country']").fill("ind");
+         //const dropdown = page.locator(".ta-results");
          const dropdown = page.locator(".ta-results");
          await dropdown.waitFor();
          const optionCounts = await dropdown.locator("button").count();
          for(let i=0;i<optionCounts; ++i){
-                text = await dropdown.locator("button").nth(i).textContent();
+                const text = await dropdown.locator("button").nth(i).textContent();
                 if(text === " India"){
                         await dropdown.locator("button").nth(i).click();
                         break;
