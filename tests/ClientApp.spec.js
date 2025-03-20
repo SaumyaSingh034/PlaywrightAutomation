@@ -41,25 +41,24 @@ test('Client App Login', async ({page}) =>
         await page.locator("[class ='btn btn-primary mt-1']").click();
 
         //validate email id
-         const email = await page.locator("[class*='text-validated ng-untouched']").inputValue();
-         const email1 = await page.locator("[class*='text-validated ng-untouched']").innerText();
-         console.log(email);
-         console.log(email1);
+        //  const email = await page.locator("[class*='text-validated ng-untouched']").inputValue();
+        //  const email1 = await page.locator("[class*='text-validated ng-untouched']").innerText();
+        //  console.log(email);
+        //  console.log(email1);
 
          //Select Country
-         await page.locator("[placeholder*='Country']").fill("ind");
-         //const dropdown = page.locator(".ta-results");
-         const dropdown = page.locator(".ta-results");
-         await dropdown.waitFor();
-         const optionCounts = await dropdown.locator("button").count();
-         for(let i=0;i<optionCounts; ++i){
-                const text = await dropdown.locator("button").nth(i).textContent();
-                if(text === " India"){
-                        await dropdown.locator("button").nth(i).click();
-                        break;
-                }
+        await page.locator("[placeholder='Select Country']").pressSequentially("ind",{delay:100});
+          const dropdown = page.locator(".ta-results");
+          await dropdown.waitFor();
+          const optionCounts = await dropdown.locator("button").count();
+        //  for(let i=0;i<optionCounts; ++i){
+        //         const text = await dropdown.locator("button").nth(i).textContent();
+        //         if(text === " India"){
+        //                 await dropdown.locator("button").nth(i).click();
+        //                 break;
+        //         }
 
-         }
+        //  }
 
         
         await page.pause();
